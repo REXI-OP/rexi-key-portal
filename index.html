@@ -1,112 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080607">
-  <title>REXI BLOOD REALM | Key Portal</title>
-  <style>
-    :root { --red:#ed4264; --red2:#a91636; --panel:#260b13; --muted:#d8a1ad; }
-    * { box-sizing:border-box; }
-    body {
-      margin:0; min-height:100vh; padding:28px 16px;
-      display:grid; place-items:center; color:#fff;
-      background:radial-gradient(ellipse at 50% 0%, #32101b 0%, #10080c 42%, #050405 100%);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-    .wrap { width:min(100%, 470px); }
-    .card {
-      border:1px solid #35212a; border-radius:22px; padding:28px 22px;
-      background:rgba(0,0,0,.78); box-shadow:0 18px 65px #000a;
-    }
-    header { text-align:center; padding:4px 0 24px; border-bottom:1px solid #24171c; }
-    h1 { margin:0; color:var(--red); font-size:clamp(25px,7vw,34px); letter-spacing:.5px; font-weight:900; }
-    .subtitle { margin-top:7px; color:#d6d0d2; font-size:12px; font-weight:800; letter-spacing:1.1px; }
-    .pill { display:inline-block; margin-top:12px; padding:5px 13px; border-radius:30px; background:#062b18; color:#39e88c; font-size:11px; font-weight:900; }
-    .welcome { margin-top:23px; padding:20px 16px; border-radius:17px; background:var(--panel); border:1px solid #3d101e; }
-    h2 { margin:0 0 8px; font-size:20px; }
-    p { color:var(--muted); line-height:1.55; margin:0 0 17px; font-weight:600; }
-    button {
-      width:100%; border:0; border-radius:12px; padding:16px 14px;
-      background:linear-gradient(135deg,#591326,#35101b); color:#ff6682;
-      font-size:19px; font-weight:900; cursor:pointer; transition:.15s;
-    }
-    button:active { transform:scale(.985); }
-    button:hover { filter:brightness(1.2); }
-    .keybox { display:none; margin-top:16px; padding:14px; border:1px dashed #a93450; border-radius:12px; background:#10070b; }
-    .keylabel { color:#d99aa8; font-size:12px; font-weight:800; margin-bottom:8px; }
-    code { display:block; overflow-wrap:anywhere; color:#fff; font-size:17px; font-weight:900; letter-spacing:1px; padding:8px 0 13px; }
-    .copy { background:#8f1c39; color:white; font-size:15px; padding:12px; }
-    .steps { margin:22px 4px 0; padding:0; list-style:none; counter-reset:step; }
-    .steps li { counter-increment:step; display:flex; gap:13px; margin:13px 0; font-weight:700; line-height:1.4; }
-    .steps li:before { content:counter(step); color:#ff6682; font-weight:900; }
-    footer { text-align:center; color:#8e777e; font-size:11px; margin-top:19px; }
-    .notice { font-size:11px; color:#967d84; margin-top:14px; text-align:center; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REXI KEY PORTAL</title>
+<style>
+:root{--red:#ff3048;--bg:#08090d;--panel:#12141b;--muted:#a4a8b3}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0%,#38101a 0,#111018 38%,var(--bg) 75%);color:#fff;font-family:Arial,sans-serif;display:flex;align-items:center;justify-content:center;padding:22px}
+.wrap{width:100%;max-width:480px}
+.card{background:rgba(18,20,27,.96);border:1px solid #40202a;border-radius:22px;padding:28px;box-shadow:0 18px 70px #0009}
+.logo{text-align:center;color:var(--red);font-size:13px;letter-spacing:5px;font-weight:800}
+h1{text-align:center;margin:10px 0 6px;font-size:32px;letter-spacing:2px}
+.sub{text-align:center;color:var(--muted);font-size:12px;letter-spacing:2px;margin-bottom:26px}
+.task{border:1px solid #30323d;background:#0c0e14;border-radius:15px;padding:17px;margin:13px 0}
+.tasktop{display:flex;align-items:center;gap:12px}
+.num{width:35px;height:35px;border-radius:10px;background:#32131b;color:#ff6577;display:grid;place-items:center;font-weight:800}
+.taskname{font-weight:800;font-size:14px;flex:1}
+.status{font-size:10px;color:#ff7a89;border:1px solid #74303d;border-radius:20px;padding:5px 8px}
+.desc{color:var(--muted);font-size:12px;line-height:1.5;margin:10px 0 13px}
+a.visit{display:block;text-align:center;text-decoration:none;color:white;background:#252833;border:1px solid #414552;padding:12px;border-radius:10px;font-size:12px;font-weight:800}
+a.visit:active{transform:scale(.99)}
+label.check{display:flex;gap:10px;align-items:center;margin-top:13px;color:#d8d9df;font-size:12px;cursor:pointer}
+input{accent-color:var(--red);width:17px;height:17px}
+button{width:100%;border:0;border-radius:11px;padding:14px;font-weight:900;letter-spacing:1px;cursor:pointer}
+#unlock{background:linear-gradient(90deg,#a90e27,#ff3048);color:white;margin-top:17px}
+#unlock:disabled{background:#343640;color:#858894;cursor:not-allowed}
+#keybox{display:none;margin-top:16px;border:1px dashed var(--red);border-radius:12px;padding:15px;text-align:center}
+#key{font-weight:900;letter-spacing:2px;color:#ff6577;word-break:break-word;margin:8px 0}
+#copy{background:#252833;color:white;margin-top:8px}
+.note{text-align:center;color:#858995;font-size:10px;line-height:1.5;margin:18px 4px 0}
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="card">
-      <header>
-        <h1>REXI BLOOD REALM</h1>
-        <div class="subtitle">KEY AUTHENTICATION SYSTEM</div>
-        <span class="pill">● KEY PORTAL</span>
-      </header>
+<main class="wrap"><section class="card">
+  <div class="logo">OFFICIAL ACCESS GATE</div>
+  <h1>REXI KEY PORTAL</h1>
+  <div class="sub">COMPLETE BOTH TASKS TO CONTINUE</div>
 
-      <section class="welcome">
-        <h2>Welcome to REXI</h2>
-        <p>Get your shared access key to continue.</p>
-        <button id="getKey" type="button">GET YOUR KEY</button>
+  <div class="task">
+    <div class="tasktop"><div class="num">01</div><div class="taskname">ROBLOX PROFILE</div><div class="status" id="s1">NOT DONE</div></div>
+    <div class="desc">Open the REXI Roblox profile, then tick the confirmation below.</div>
+    <a class="visit" href="https://www.roblox.com/users/8386507009/profile" target="_blank" rel="noopener">OPEN ROBLOX PROFILE ↗</a>
+    <label class="check"><input type="checkbox" id="t1"> I have visited the Roblox profile</label>
+  </div>
 
-        <div class="keybox" id="keybox" aria-live="polite">
-          <div class="keylabel">YOUR SHARED ACCESS KEY</div>
-          <code id="keyText">••••••••••••</code>
-          <button class="copy" id="copyKey" type="button">COPY KEY</button>
-        </div>
-      </section>
+  <div class="task">
+    <div class="tasktop"><div class="num">02</div><div class="taskname">YOUTUBE CHANNEL</div><div class="status" id="s2">NOT DONE</div></div>
+    <div class="desc">Open the channel and subscribe, then tick the confirmation below.</div>
+    <a class="visit" href="https://www.youtube.com/@nss_edits09" target="_blank" rel="noopener">OPEN YOUTUBE CHANNEL ↗</a>
+    <label class="check"><input type="checkbox" id="t2"> I have subscribed to the channel</label>
+  </div>
 
-      <ol class="steps">
-        <li>Website open karo.</li>
-        <li>GET YOUR KEY button dabao.</li>
-        <li>Apni key copy karo.</li>
-        <li>Script ke key box mein paste karo.</li>
-      </ol>
-      <div class="notice">Keep in mind: this is a shared key, not a unique key for each user.</div>
-    </section>
-    <footer>REXI BLOOD REALM © 2026</footer>
-  </main>
-
-  <script>
-    // IMPORTANT: Keep this value identical to the key checked by your script.
-    // Anyone can inspect a static website and read this shared key.
-    const SHARED_KEY = "REXIMERABBU";
-
-    const getKey = document.getElementById("getKey");
-    const keybox = document.getElementById("keybox");
-    const keyText = document.getElementById("keyText");
-    const copyKey = document.getElementById("copyKey");
-
-    getKey.addEventListener("click", () => {
-      keyText.textContent = SHARED_KEY;
-      keybox.style.display = "block";
-      getKey.textContent = "KEY GENERATED";
-    });
-
-    copyKey.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(SHARED_KEY);
-        copyKey.textContent = "COPIED ✓";
-      } catch (e) {
-        const field = document.createElement("textarea");
-        field.value = SHARED_KEY;
-        document.body.appendChild(field);
-        field.select();
-        document.execCommand("copy");
-        field.remove();
-        copyKey.textContent = "COPIED ✓";
-      }
-      setTimeout(() => copyKey.textContent = "COPY KEY", 1600);
-    });
-  </script>
+  <button id="unlock" disabled>COMPLETE BOTH TASKS FIRST</button>
+  <div id="keybox"><div style="font-size:11px;color:#a4a8b3">YOUR SHARED ACCESS KEY</div><div id="key">REXIMERABBU</div><button id="copy">COPY KEY</button></div>
+  <p class="note">Task checkboxes are self-confirmation only. This static GitHub Pages demo cannot verify profile visits or YouTube subscriptions. The shared key is visible in the page source, so do not use this as secure authentication.</p>
+</section></main>
+<script>
+const a=document.getElementById('t1'),b=document.getElementById('t2'),btn=document.getElementById('unlock');
+function update(){
+ document.getElementById('s1').textContent=a.checked?'COMPLETED':'NOT DONE';
+ document.getElementById('s2').textContent=b.checked?'COMPLETED':'NOT DONE';
+ btn.disabled=!(a.checked&&b.checked);
+ btn.textContent=btn.disabled?'COMPLETE BOTH TASKS FIRST':'UNLOCK SHARED KEY';
+}
+a.addEventListener('change',update);b.addEventListener('change',update);
+btn.addEventListener('click',()=>{if(a.checked&&b.checked)document.getElementById('keybox').style.display='block'});
+document.getElementById('copy').addEventListener('click',async()=>{
+ try{await navigator.clipboard.writeText('REXIMERABBU');document.getElementById('copy').textContent='COPIED!'}
+ catch(e){document.getElementById('copy').textContent='SELECT AND COPY THE KEY'}
+});
+</script>
 </body>
 </html>
